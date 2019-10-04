@@ -1,0 +1,91 @@
+<?php
+
+session_start();
+if (!isset($_SESSION["count"])) {
+    $_SESSION["count"] = 0;
+} else {
+    $_SESSION["count"]++;
+}
+?>
+<html>
+ <head>
+  <title>Dias</title>
+ </head>
+ <body>
+    <form method="post" action="N3P1AdrianCasado3.php">
+    <p>Introduce el texto: <input type="text" name='text'></p>
+    <p>Que color es tu favorito: <input type="color" name='color' value="#ff0000" id="muestrario"></p>
+    <p>Que tamaño de fuente quieres utilizar: 
+    <select id="size" name="size">
+        <option selected="selected">- selecciona -</option>
+        <option>12</option>
+        <option>14</option>
+        <option>16</option>
+        <option>18</option>
+    </select></p>
+    <p>Que tipo de fuente utilizas: 
+     <select id="font" name="font">
+        <option selected="selected">- selecciona -</option>
+        <option>Arial</option>
+        <option>Comic Sans</option>
+        <option>Calibri</option>
+        <option>Verdana</option>
+    </select></p>
+    <p>Click aqui si desea guardar su informacion: <input type="checkbox" name="guardar_clave" value="1"> </p>
+    <input type="submit" name="submit" value="Submit"/>
+  </form>
+    <p>Ayer fue</p>
+    <?php
+    echo date("Y-m-j H:i:s", strtotime( '-1 days' ) );
+     ?>
+     <p>El mes anterior fue</p>
+     <?php
+    echo date("Y-m-d", strtotime("-1 month")) ;
+    ?>
+    <p>Quedan 
+    <?php
+    $ultimodia = date("d", strtotime("last day of")) ;
+    $diaactual = date("d", strtotime("Today")) ;
+    $res = $ultimodia - $diaactual;
+    echo $res;
+    ?>
+    de este mes</p>
+    <p>Quedan  
+    <?php
+    $mesactual = date("m") ;
+    $res2 = 12 - $mesactual;
+    echo $res2;
+    ?>
+    meses en este anio</p>
+    <?php
+    if ($mesactual >= 05) {
+    echo "Que tengas buen invierno!";
+    }else{
+        echo "Que tengas buen verano!";
+    }  
+    echo "<br/>";
+    ?>
+    
+    <?php
+    echo "Has elegido los valores, ";
+    echo $_COOKIE["color"];
+    echo "<br/>";
+    echo $_COOKIE["tipogra"];
+    echo "<br/>";
+    echo $_COOKIE["size"];
+    echo "<br/>";
+    ?>
+    <?php
+    echo("Hola, has accedido a esta página ");
+    echo($_SESSION["count"]);
+    echo(" veces.");
+    echo "<br/>";
+    ?>
+    
+    <?php include "N3P1AdrianCasado2.php"; ?>
+    
+
+ </body>
+</html>
+
+
