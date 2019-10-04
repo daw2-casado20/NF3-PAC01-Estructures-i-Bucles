@@ -1,0 +1,27 @@
+<?php
+
+ if ($_POST['guardar_clave']){
+    setcookie("color", $_POST["color"],time()+60);
+    setcookie("tipogra", $_POST["font"],time()+60);
+    setcookie("size", $_POST["size"],time()+60);
+}
+
+?>
+    <html>
+        <head>
+            <title>Texto</title>
+        </head>
+        <body>
+            <?php
+            $Color=($_POST['color']); 
+            $Tipografia=($_POST['font']); 
+            $Size=($_POST['size']); 
+            $style="color:".$Color.";font-family:".$Tipografia.";font-size:".$Size;
+            ?>
+            <div style="<?php echo $style ?>">
+            <?php echo ($_POST['text']); ?>
+            </div>
+        </body>
+    </html>
+
+
